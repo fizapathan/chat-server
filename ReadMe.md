@@ -14,7 +14,7 @@ This chat server covers both the REST APIs and WebSocket protocols for communica
 
 ## Getting Started
    - Install the required dependencies: `npm install` 
-   - Start the server with `node server.js`.
+   - Start the server with `npm start`.
 
 ## Note
    - **No database** is integrated in this implementation. Ideal storage for a chat application would be a NoSQL database like MongoDB.
