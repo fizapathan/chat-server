@@ -25,18 +25,16 @@ export function setupSocketHandlers(io: Server) {
     // Send existing messages to newly connected client
     socket.emit("message:history", messages);
 
-    socket.on("user:typing:start", (data: { userName: string }) => {
-      const user = users.find(u => u.name === data.userName);
+    socket.on("user:typing:start", (data: { userId: string }) => {
+      const user = users.find(u => u.id === data.userId);
       if (user) {
-        console.log("Typing user found:", user);
         socket.emit("typing:start", { userId: user.id, userName: user.name });
       }
     });
 
-    socket.on("user:typing:stop", (data: { userName: string }) => {
-      const user = users.find(u => u.name === data.userName);
+    socket.on("user:typing:stop", (data: { userId: string }) => {
+      const user = users.find(u => u.id === data.userId);
       if (user) {
-        console.log("Typing stopped:", user);
         socket.emit("typing:stop", { userId: user.id, userName: user.name });
       }
     });
