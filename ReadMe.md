@@ -19,3 +19,20 @@ This chat server covers both the REST APIs and WebSocket protocols for communica
 ## Note
    - **No database** is integrated in this implementation. Ideal storage for a chat application would be a NoSQL database like MongoDB.
    - This project is a basic implementation and doesn't include features such as error handling, security measures, and scalability considerations for production use.
+
+## Folder Structure
+   chat-server/
+   ├── src/
+       ├── models/              # Data models (in-memory storage)
+       ├── routes/
+       │   └── auth.ts          # Authentication routes with /auth prefix
+       ├── services/
+       │   └── Users.service.ts  # User-related services
+       │   └── Chats.service.ts  # Chat-related services
+       │   └── ChatRooms.service.ts  # Chat rooms-related services
+       ├── socket/
+       │   └── handlers.ts      # Socket.io connection and message handling
+       ├── types/
+       │   └── index.ts         # TypeScript interfaces and types
+       └── server.ts           # Main server file
+       └── utils.ts           # Utility functions
