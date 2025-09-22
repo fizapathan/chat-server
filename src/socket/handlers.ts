@@ -28,14 +28,16 @@ export function setupSocketHandlers(io: Server) {
     socket.on("user:typing:start", (data: { userId: string }) => {
       const user = users.find(u => u.id === data.userId);
       if (user) {
-        socket.emit("typing:start", { userId: user.id, userName: user.name });
+        console.log("Typing start for user:", user);
+        io.emit("typing:start", { userId: user.id, userName: user.name });
       }
     });
 
     socket.on("user:typing:stop", (data: { userId: string }) => {
       const user = users.find(u => u.id === data.userId);
       if (user) {
-        socket.emit("typing:stop", { userId: user.id, userName: user.name });
+        console.log("Typing stop for user:", user);
+        io.emit("typing:stop", { userId: user.id, userName: user.name });
       }
     });
 
@@ -43,7 +45,7 @@ export function setupSocketHandlers(io: Server) {
       const user = users.find(u => u.name === data.userName);
       if (user) {
         console.log("User online:", user);
-        socket.emit("user:online", { userId: user.id, userName: user.name });
+        io.emit("user:online", { userId: user.id, userName: user.name });
       }
     });
 
@@ -51,7 +53,7 @@ export function setupSocketHandlers(io: Server) {
       const user = users.find(u => u.name === data.userName);
       if (user) {
         console.log("User offline:", user);
-        socket.emit("user:offline", { userId: user.id, userName: user.name });
+        io.emit("user:offline", { userId: user.id, userName: user.name });
       }
     });
 
